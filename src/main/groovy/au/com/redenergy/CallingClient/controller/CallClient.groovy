@@ -34,6 +34,7 @@ class CallClient {
     String url="${instances.first().getUri().toString()}/greeting"
     ResponseEntity<String> entity = restTemplate.getForEntity(url, String)
     log.info(entity.body)
+
     return entity.body
   }
 }
