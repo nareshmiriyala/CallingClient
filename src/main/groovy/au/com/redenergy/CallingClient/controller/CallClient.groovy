@@ -7,6 +7,7 @@ package au.com.redenergy.CallingClient.controller
 
 import groovy.util.logging.Slf4j
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.cloud.client.ServiceInstance
 import org.springframework.cloud.client.discovery.DiscoveryClient
@@ -24,6 +25,7 @@ class CallClient {
   DiscoveryClient discoveryClient
 
   @GetMapping
+  @HystrixCommand
   String callClient() {
     RestTemplate restTemplate = new RestTemplate()
     List<ServiceInstance> instances = discoveryClient.getInstances("MICROSERVICELCIENT")
@@ -33,6 +35,7 @@ class CallClient {
     log.info("Application name ${instances.first().getUri().toString()}/greeting")
     String url="${instances.first().getUri().toString()}/greeting"
     ResponseEntity<String> entity = restTemplate.getForEntity(url, String)
+    Thread.sleep(10000)
     log.info(entity.body)
 
     return entity.body

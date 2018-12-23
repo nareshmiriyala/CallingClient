@@ -29,6 +29,7 @@ ext['springCloudVersion'] = 'Greenwich.RC1'
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+	implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
 	implementation('org.codehaus.groovy:groovy')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
